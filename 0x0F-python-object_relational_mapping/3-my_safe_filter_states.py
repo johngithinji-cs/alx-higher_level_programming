@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-    script that takes in an argument and displays all values in the
-    states table of hbtn_0e_0_usa where name matches the argument.
-"""
+""" write one script that is safe from MySQL injections! """
 from sys import argv
 import MySQLdb
 if __name__ == "__main__":
@@ -17,9 +14,9 @@ if __name__ == "__main__":
     try:
         search = argv[4]
         states = """
-        SELECT * FROM states WHERE name LIKE BINARY '{:s}' ORDER BY id ASC;
-        """.format(search)
-        cur.execute(states)
+        SELECT * FROM states WHERE name LIKE BINARY %s ORDER BY id ASC
+        """
+        cur.execute(states, (search,))
         rtn = cur.fetchall()
     except MySQLdb.Error:
         try:

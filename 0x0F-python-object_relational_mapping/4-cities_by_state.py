@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-    script that takes in an argument and displays all values in the
-    states table of hbtn_0e_0_usa where name matches the argument.
-"""
+""" script that lists all cities from the database hbtn_0e_4_usa """
 from sys import argv
 import MySQLdb
 if __name__ == "__main__":
@@ -15,10 +12,12 @@ if __name__ == "__main__":
         charset="utf8")
     cur = conn.cursor()
     try:
-        search = argv[4]
         states = """
-        SELECT * FROM states WHERE name LIKE BINARY '{:s}' ORDER BY id ASC;
-        """.format(search)
+        SELECT cities.id, cities.name, states.name
+        FROM cities, states
+        WHERE cities.state_id = states.id
+        ORDER BY cities.id ASC
+        """
         cur.execute(states)
         rtn = cur.fetchall()
     except MySQLdb.Error:
