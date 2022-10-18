@@ -1,11 +1,10 @@
 #!/usr/bin/node
-//script that reads and prints the content of a file.
+// JS Script
 let fs = require('fs');
 fs.readFile(process.argv[2], function (err, contents) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-      console.log(contents.encode('utf8').toString().trim());
-    }
+  if (!err) {
+    console.log(contents.toString().trim());
+  } else {
+    console.log(err);
+  }
 });
