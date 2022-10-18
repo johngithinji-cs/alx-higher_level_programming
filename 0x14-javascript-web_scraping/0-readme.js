@@ -6,6 +6,7 @@ fs.readFile(process.argv[2], function (err, contents) {
         console.log(err);
     }
     else {
-        console.log(contents.toString().trim());
+        x = (contents.toString().trim());
+        console.log(x.encode('utf8'));
     }
 });
