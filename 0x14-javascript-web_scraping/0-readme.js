@@ -1,10 +1,11 @@
 #!/usr/bin/node
-// JS Script
-let fs = require('fs');
+//script that reads and prints the content of a file.
+const fs = require('fs');
+
 fs.readFile(process.argv[2], 'utf8', function (err, contents) {
   if (err) {
     console.log(err);
   } else {
-    console.log(contents);
+    process.stdout.write(contents);
   }
 });
